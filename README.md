@@ -14,3 +14,50 @@ In this repository, we ONLY support the parsing of types, but not actual type ch
 - **Interoperability**: Seamlessly interact with existing Lua 5.1 codebases and libraries while enjoying the advantages of typing.
 - **Continue statement**: Supports the continue control flow statement present in numerous other languages.
 - **Compound assignment operators**: Utilize the power of compound assignment (+=, -=, *=, etc.)
+
+## Examples
+
+### Typed Lua
+```lua
+type Head = { Box : boolean }
+
+local litten : Head = { Box = true }
+
+print(litten.Box)
+
+function add(a: number, b: number): number
+    return a + b
+end
+
+print(add(1, 2))
+
+local array : { [number] : string } = { "test" }
+print(array[1])
+
+local object : { x : number, y : any }
+
+local foo : (number?)
+
+export type Point = { x: number, y: number }
+type Array<T> = { [number]: T }
+type Something = typeof(string.gmatch("", "%d"))
+
+function spawn(func : () -> void) end
+```
+
+### Compound Assignment
+```lua
+local a = 1
+a += 1
+a *= 2
+print(a)
+```
+
+### Continue Statement
+```lua
+for i = 1, 3 do
+    if i == 2 then continue end
+
+    print(i)
+end
+```
